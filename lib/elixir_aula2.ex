@@ -47,9 +47,19 @@ defmodule ElixirAula2 do
   # Returns n^4
   def elevado_quatro(n), do: elevado_dois(n) * elevado_dois(n)
 
+  # Reverses a string
+  def reverse_str(str) when byte_size(str) > 0 do
+    <<hd::utf8, rst::binary>> = str
+    reverse_str(rst) <> <<hd>>
+  end
+
+  def reverse_str(_) do
+    <<>>
+  end
+
   # Verica se str é um palíndromo
   def palindromo?(str) do
-    String.equivalent?(str, String.reverse(str))
+    str == reverse_str(str)
   end
 
   # Verifica se as medidas recebidas são de um triângulo
